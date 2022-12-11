@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx_web_1:
+    image: matiza5/nginx:latest
+    networks:
+      my_net:
+        aliases: 
+          - nginx1
+  nginx_web_2:
+    image: matiza5/nginx:latest
+    networks:
+      my_net:
+        aliases: 
+          - nginx2
+  haproxy:
+    image: matiza5/haproxy:latest
+    ports:
+      - 80:80
+      - 443:443
+      - 888:888
+    expose:
+      - 80
+      - 443
+      - 888
+    networks:
+      my_net:
+networks:
+  my_net:
+    driver: bridge
