@@ -1,0 +1,18 @@
+name: Build and push docker images
+on:
+  push:
+jobs:
+  build-nginx:
+    name: Build nginx image
+    uses: ./.github/workflows/_build-image.yml
+    secrets: inherit
+    with:
+      image-name: matiza5/nginx
+      image-source: ./nginx
+  build-haproxy:
+    name: Build haproxy image
+    uses: ./.github/workflows/_build-image.yml
+    secrets: inherit
+    with:
+      image-name: matiza5/haproxy
+      image-source: ./haproxy
